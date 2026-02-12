@@ -41,9 +41,14 @@ export const updateUser = async (req, res, next) => {
   if (email) user.email = email;
   if (password) user.password = password;
   let result = await User.update(id, user);
-  return res.status(200).json({
-    message: "data updated",
-    result,
+  if (result.modifiedCount > 0) {
+    return res.status(200).json({
+      message: "data updated",
+      data: user,
+    });
+  }
+  return res.status(500).json({
+    message: "something wen wrong",
   });
 };
 export const deleteUser = async (req, res, next) => {

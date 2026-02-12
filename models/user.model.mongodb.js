@@ -23,11 +23,9 @@ export default class User {
     if (!ObjectId.isValid(id)) {
       throw HTTPError(400, "Invalid ObjectId.");
     }
-    let users = await db.collection("users").find({ _id: new ObjectId(id) });
+    let user = await db.collection("users").findOne({ _id: new ObjectId(id) });
 
-    console.log(users);
-    if (users.length > 0) return users[0];
-    else return null;
+    return user;
   }
   static async create(user) {
     let db = getDb();

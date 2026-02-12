@@ -5,7 +5,7 @@ import {
   getUserByID,
   updateUser,
   deleteUser,
-} from "../controllers/users.controller.js";
+} from "../controllers/users.controller.mongodb.js";
 
 const router = Router();
 
